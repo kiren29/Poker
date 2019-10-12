@@ -28,15 +28,10 @@ public class PokerGameController {
 
 
     private void addPlayer() {
-    	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
-    		Player p = model.getPlayer(i);
-    		p.discardHand();
-    		PlayerPane pp = view.getPlayerPane(i);
-    		pp.updatePlayerDisplay();
+    	DeckOfCards deck = model.getDeck();
 
     	}
-	}
-
+	
 
 
 	/**
