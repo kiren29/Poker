@@ -2,11 +2,9 @@ package poker.version_graphics.model;
 
 import java.util.ArrayList;
 
-import poker.version_graphics.model.Card.Rank;
-
 public enum HandType {
     HighCard, OnePair, TwoPair, ThreeOfAKind, Straight, Flush, FullHouse, FourOfAKind, StraightFlush;
-   		
+    
     /**
      * Determine the value of this hand. Note that this does not
      * account for any tie-breaking
@@ -56,20 +54,8 @@ public enum HandType {
     }
     
     public static boolean isThreeOfAKind(ArrayList<Card> cards) {
-
-    	boolean found = false;
-    	
-        for (int i = 0; i < cards.size() - 1 && !found; i++) {
-            for (int j = i+1; j < cards.size() && !found; j++) {
-            	for (int k = j+1; k < cards.size() && !found; k++) {
-
-                if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank()) 
-                	found = true;
-            	}
-            }
-        }
-       
-		return found;
+        
+        return false;
     }
     
     public static boolean isStraight(ArrayList<Card> cards) {
@@ -88,33 +74,12 @@ public enum HandType {
     }
     
     public static boolean isFourOfAKind(ArrayList<Card> cards) {
-        // TODO       
-    	boolean found = false;
-    	
-        for (int i = 0; i < cards.size() - 1 && !found; i++) {
-            for (int j = i+1; j < cards.size() && !found; j++) {
-            	for (int k = j+1; k < cards.size() && !found; k++) {
-            		for (int l = k+1; l<cards.size() && !found; l++) {
-            		System.out.println(cards);
-            		System.out.println(cards.get(i).getRank());
-            		System.out.println(cards.get(j).getRank());
-            		System.out.println(cards.get(k).getRank());
-            		System.out.println(cards.get(l).getRank());
-                if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank() && cards.get(i).getRank() == cards.get(l).getRank()) 
-                	found = true;
-            	}
-            }
-        }
-        }
-    	  
-        System.out.println(cards);
-        System.out.println("Four "+found);
-        
-		return found;
+        // TODO        
+        return false;
     }
     
     public static boolean isStraightFlush(ArrayList<Card> cards) {
-        // TODO     
+        // TODO        
         return false;
     }
 }
