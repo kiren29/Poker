@@ -25,9 +25,8 @@ public class PokerGameController {
 		view.getAddPlayerButton().setOnAction(e -> addPlayer());
 	}
 	
-
-
     private void addPlayer() {
+    
     	}
 
 	/**
