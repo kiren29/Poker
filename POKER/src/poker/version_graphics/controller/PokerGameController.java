@@ -28,11 +28,7 @@ public class PokerGameController {
 
 
     private void addPlayer() {
-    	DeckOfCards deck = model.getDeck();
-
     	}
-	
-
 
 	/**
      * Remove all cards from players hands, and shuffle the deck

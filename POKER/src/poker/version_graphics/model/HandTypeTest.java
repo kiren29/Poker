@@ -38,7 +38,8 @@ public class HandTypeTest {
 	ArrayList<ArrayList<Card>> highCardHands;
 	ArrayList<ArrayList<Card>> pairHands;
 	ArrayList<ArrayList<Card>> twoPairHands;
-	
+	ArrayList<ArrayList<Card>> threeKindHands;
+	ArrayList<ArrayList<Card>> fourKindHands;
 	/**
 	 * The makeHands method is called before each test method,
 	 * and prepares the translated hands. We recreate these for
@@ -49,6 +50,7 @@ public class HandTypeTest {
 		highCardHands = makeHands(highCards);
 		pairHands = makeHands(pairs);
 		twoPairHands = makeHands(twoPairs);
+		
 	}
 
 	/**
@@ -82,6 +84,42 @@ public class HandTypeTest {
 		}
 		for (ArrayList<Card> hand : twoPairHands) {
 			assertTrue(HandType.isTwoPair(hand));
+		}
+	}
+	@Test
+	public void testIsThreeOfAKind() {
+		for (ArrayList<Card> hand : highCardHands) {
+			assertFalse(HandType.isThreeOfAKind(hand));
+		}
+		for (ArrayList<Card> hand : pairHands) {
+			assertFalse(HandType.isThreeOfAKind(hand));
+		}
+		for (ArrayList<Card> hand : twoPairHands) {
+			assertFalse(HandType.isThreeOfAKind(hand));
+		}
+		for (ArrayList<Card> hand : threeKindHands) {
+			assertTrue(HandType.isThreeOfAKind(hand));
+		}
+		for (ArrayList<Card> hand : fourKindHands) {
+			assertTrue(HandType.isThreeOfAKind(hand));
+		}
+	}
+	@Test
+	public void testIsFourOfAKind() {
+		for (ArrayList<Card> hand : highCardHands) {
+			assertFalse(HandType.isFourOfAKind(hand));
+		}
+		for (ArrayList<Card> hand : pairHands) {
+			assertFalse(HandType.isFourOfAKind(hand));
+		}
+		for (ArrayList<Card> hand : twoPairHands) {
+			assertFalse(HandType.isFourOfAKind(hand));
+		}
+		for (ArrayList<Card> hand : threeKindHands) {
+			assertFalse(HandType.isFourOfAKind(hand));
+		}
+		for (ArrayList<Card> hand : fourKindHands) {
+			assertTrue(HandType.isFourOfAKind(hand));
 		}
 	}
 	

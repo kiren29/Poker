@@ -3,8 +3,10 @@ package poker.version_graphics.view;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import poker.version_graphics.PokerGame;
@@ -21,7 +23,7 @@ public class PokerGameView {
 		
 		// Create all of the player panes we need, and put them into an HBox
 		players = new HBox();
-		for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
+		for (int i = 0; i < PokerGame.NUM_PLAYERS; i++){
 			PlayerPane pp = new PlayerPane();
 			pp.setPlayer(model.getPlayer(i)); // link to player object in the logic
 			players.getChildren().add(pp);
@@ -37,7 +39,7 @@ public class PokerGameView {
 		root.setBottom(controls);
 		
 		// Disallow resizing - which is difficult to get right with images
-		stage.setResizable(false);
+		stage.setResizable(true);
 
         // Create the scene using our layout; then display it
         Scene scene = new Scene(root);

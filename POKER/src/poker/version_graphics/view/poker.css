@@ -3,19 +3,20 @@
     -fx-min-width: 200.0;
     -fx-max-width: 2000.0;
   	-fx-alignment: center;
+  	-fx-text-fill: white;
 }
 
 #controlArea {
     -fx-spacing: 15.0px;
     -fx-padding: 5.0px;
-    -fx-border-color: black;
+    -fx-border-color: white;
     -fx-background-color: green;
     -fx-border-width: 2.0px;
 }
 
 .player {
 	-fx-padding: 5.0px;
-    -fx-border-color: black;
+    -fx-border-color: white;
     -fx-background-color: green;
     -fx-border-width: 2.0px;
 }
@@ -33,3 +34,5 @@
     -fx-pref-height: 162;
     -fx-max-height: 800;
 }
+
+
