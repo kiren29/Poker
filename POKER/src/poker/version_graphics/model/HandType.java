@@ -64,11 +64,7 @@ public enum HandType {
         			System.out.println(cards.get(j).getRank());
         			System.out.println(cards.get(k).getRank());
                 if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank()) 
-<<<<<<< HEAD
 
-=======
-                	
->>>>>>> refs/remotes/origin/master
                 	found = true;
             	}
             }
@@ -93,11 +89,8 @@ public enum HandType {
         return false;
     }
     
-<<<<<<< HEAD
-    public static boolean isFourOfAKind(ArrayList<Card> cards) {
-=======
     public static boolean isFourOfAKind(ArrayList<Card> cards) {       
->>>>>>> refs/remotes/origin/master
+
     	boolean found = false;
 
         for (int i = 0; i < cards.size() - 1 && !found; i++) {

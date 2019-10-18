@@ -84,17 +84,16 @@ public class HandTypeTest {
 	ArrayList<ArrayList<Card>> pairHands;
 	ArrayList<ArrayList<Card>> twoPairHands;
 	ArrayList<ArrayList<Card>> threeKindHands;
-<<<<<<< HEAD
+
 	ArrayList<ArrayList<Card>> fourKindHands;
-=======
+
 //	ArrayList<ArrayList<Card>> straightHands;
 //	ArrayList<ArrayList<Card>> flushesHands;
 //	ArrayList<ArrayList<Card>> fullHousesHands;
-	ArrayList<ArrayList<Card>> fourKindHands;
 //	ArrayList<ArrayList<Card>> straightFlushesHands;
 //	ArrayList<ArrayList<Card>> royalFlushesHands;
 	
->>>>>>> refs/remotes/origin/master
+
 	/**
 	 * The makeHands method is called before each test method,
 	 * and prepares the translated hands. We recreate these for
@@ -105,17 +104,13 @@ public class HandTypeTest {
 		highCardHands = makeHands(highCards);
 		pairHands = makeHands(pairs);
 		twoPairHands = makeHands(twoPairs);
-<<<<<<< HEAD
-=======
+
 		threeKindHands = makeHands(threeKind);
-//		straightHands = makeHands(straights);
-//		flushesHands = makeHands(flushes);
-//		fullHousesHands = makeHands(fullHouses);
+//		
 		fourKindHands = makeHands(fourKind);
 //		straightFlushesHands = makeHands(straightFlushes);
 //		royalFlushesHands = makeHands(royalFlushes);
->>>>>>> refs/remotes/origin/master
-		
+
 	}
 
 	/**
@@ -169,44 +164,10 @@ public class HandTypeTest {
 			assertTrue(HandType.isThreeOfAKind(hand));
 		}
 	}
-	@Test
-	public void testIsFourOfAKind() {
-		for (ArrayList<Card> hand : highCardHands) {
-			assertFalse(HandType.isFourOfAKind(hand));
-		}
-		for (ArrayList<Card> hand : pairHands) {
-			assertFalse(HandType.isFourOfAKind(hand));
-		}
-		for (ArrayList<Card> hand : twoPairHands) {
-			assertFalse(HandType.isFourOfAKind(hand));
-		}
-		for (ArrayList<Card> hand : threeKindHands) {
-			assertFalse(HandType.isFourOfAKind(hand));
-		}
-		for (ArrayList<Card> hand : fourKindHands) {
-			assertTrue(HandType.isFourOfAKind(hand));
-		}
-	}
+
 	
 	
-	@Test
-	public void testIsThreeOfAKind() {
-		for (ArrayList<Card> hand : highCardHands) {
-			assertFalse(HandType.isThreeOfAKind(hand));
-		}
-		for (ArrayList<Card> hand : pairHands) {
-			assertFalse(HandType.isThreeOfAKind(hand));
-		}
-		for (ArrayList<Card> hand : twoPairHands) {
-			assertFalse(HandType.isThreeOfAKind(hand));
-		}
-		for (ArrayList<Card> hand : threeKindHands) {
-			assertTrue(HandType.isThreeOfAKind(hand));
-		}
-		for (ArrayList<Card> hand : fourKindHands) {
-			assertTrue(HandType.isThreeOfAKind(hand));
-		}
-	}
+	
 	@Test
 	public void testIsFourOfAKind() {
 		for (ArrayList<Card> hand : highCardHands) {
