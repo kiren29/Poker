@@ -60,23 +60,19 @@ public enum HandType {
         for (int i = 0; i < cards.size() - 1 && !found; i++) {
             for (int j = i+1; j < cards.size() && !found; j++) {
             	for (int k = j+1; k < cards.size() && !found; k++) {
-            		System.out.println(cards);
-        			System.out.println(cards.get(i).getRank());
-        			System.out.println(cards.get(j).getRank());
-        			System.out.println(cards.get(k).getRank());
+
                 if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank()) 
 
                 	found = true;
             	}
             }
         }
-        System.out.println("Three "+found);
         return found;
     }
     
     public static boolean isStraight(ArrayList<Card> cards) {
     	int counter = 0;
-    	boolean found = false;;
+    	boolean found = false;
     	
     	cards.sort(Comparator.comparing(Card::getRank));
     	
@@ -92,11 +88,6 @@ public enum HandType {
      }
     
     public static boolean isFlush(ArrayList<Card> cards) {
-        boolean found = false;
-        if (cards.get(0).getSuit() == cards.get(1).getSuit() && cards.get(0).getSuit() == cards.get(1).getSuit() && cards.get(0).getSuit() == cards.get(1).getSuit())
-        	found = true;
-    	
-    	return found;
     	boolean found = false;
     	for (int i = 0; i < cards.size() - 1 && !found; i++) {
     		for (int j = i+1; j < cards.size() && !found; j++) {
@@ -143,18 +134,13 @@ public enum HandType {
             for (int j = i+1; j < cards.size() && !found; j++) {
             	for (int k = j+1; k < cards.size() && !found; k++) {
             		for (int l = k+1; l < cards.size() && !found; l++) {
-            	        System.out.println(cards);
-            			System.out.println(cards.get(i).getRank());
-            			System.out.println(cards.get(j).getRank());
-            			System.out.println(cards.get(k).getRank());
-            			System.out.println(cards.get(l).getRank());
+
                 if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank() && cards.get(i).getRank() == cards.get(l).getRank()) 
                 	found = true;
             		}
             	}
             }
         }
-        System.out.println("Four "+found);
 		return found;
     }
     
