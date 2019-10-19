@@ -1,6 +1,7 @@
 package poker.version_graphics.model;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public enum HandType {
     HighCard, OnePair, TwoPair, ThreeOfAKind, Straight, Flush, FullHouse, FourOfAKind, StraightFlush;
@@ -64,7 +65,7 @@ public enum HandType {
         			System.out.println(cards.get(j).getRank());
         			System.out.println(cards.get(k).getRank());
                 if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank()) 
-                	
+
                 	found = true;
             	}
             }
@@ -74,9 +75,21 @@ public enum HandType {
     }
     
     public static boolean isStraight(ArrayList<Card> cards) {
-        // TODO        
-        return false;
-    }
+    	int counter = 0;
+    	boolean found = false;;
+    	
+    	cards.sort(Comparator.comparing(Card::getRank));
+    	
+    	 for (int i = 0; i < cards.size()-1; i++) {
+             if (cards.get(i).getRank().compareTo(cards.get(i + 1).getRank()) == -1) {
+                 counter++;
+                 if (counter == 4) {
+                     found = true;
+                 }
+             }
+        }
+        return found;
+     }
     
     public static boolean isFlush(ArrayList<Card> cards) {
         boolean found = false;
@@ -84,15 +97,46 @@ public enum HandType {
         	found = true;
     	
     	return found;
+    	boolean found = false;
+    	for (int i = 0; i < cards.size() - 1 && !found; i++) {
+    		for (int j = i+1; j < cards.size() && !found; j++) {
+    			for (int h = j+1; h < cards.size() && !found; h++) {
+    				for (int k = h+1; k < cards.size() && !found; k++) {
+    					for (int l = k+1; l < cards.size() && !found; l++) {
+    						if (cards.get(i).getSuit() == cards.get(j).getSuit() && cards.get(j).getSuit()
+    								== cards.get(h).getSuit() && cards.get(h).getSuit() == cards.get(k).getSuit()
+    								&& cards.get(k).getSuit()== cards.get(l).getSuit()) found = true;
+    					}
+    				}
+    			}
+    		}
+    	}
+        return found;
     }
+
     
     public static boolean isFullHouse(ArrayList<Card> cards) {
-    	if(isThreeOfAKind(cards) && isOnePair(cards))
-            return true;
-        return false;
+    	boolean threeOfAKindFound = false;
+        ArrayList<Card> clonedCards = (ArrayList<Card>) cards.clone();
+
+        for (int i = 0; i < cards.size() - 2 && !threeOfAKindFound; i++) {
+            for (int j = i + 1; j < cards.size() - 1 && !threeOfAKindFound; j++) {
+                for (int k = j + 1; k < cards.size() && !threeOfAKindFound; k++) {
+                    if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(j).getRank() == cards.get(k).getRank()) {
+                        threeOfAKindFound = true;
+                        clonedCards.remove(k);
+                        clonedCards.remove(j);
+                        clonedCards.remove(i);  
+                    }
+                }
+            }
+        }
+        return threeOfAKindFound && isOnePair(clonedCards);
     }
+
     
     public static boolean isFourOfAKind(ArrayList<Card> cards) {       
+
     	boolean found = false;
 
         for (int i = 0; i < cards.size() - 1 && !found; i++) {
@@ -115,7 +159,11 @@ public enum HandType {
     }
     
     public static boolean isStraightFlush(ArrayList<Card> cards) {
-        // TODO        
-        return false;
+    	boolean found = false;
+    	if(isStraight(cards)&& isFlush(cards)) {
+        	found = true;
+        }
+        return found;
     }
 }
+

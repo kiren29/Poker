@@ -34,48 +34,45 @@ public class HandTypeTest {
 			{ "9S", "2C", "2H", "5D", "5H" }
 			};
 	
-	private static String[][] threeKind = {
-			{ "2S", "2C", "2H", "5D", "7H" },
-			{ "2S", "AC", "5H", "AD", "AH" },
-			{ "3S", "2C", "3H", "2D", "2H" },
-			{ "9S", "2C", "5H", "5D", "5S" }
-			};
+	private static String[][] threeKinds = {
+			{ "2S", "2C", "2H", "6D", "7H" },
+			{ "AS", "AC", "AH", "5D", "7D" },
+			{ "3S", "2C", "3H", "2D", "3H" },
+			{ "9S", "4C", "9H", "9D", "5H" }
+	};
 	
-	//anpassen
-	//private static String[][] straights = {
-
-	//		};
-	
-
-//	private static String[][] flushes = {
-		//	{ "8S", "2S", "TS", "QS", "5S" },
-		//	{ "AC", "3C", "4C", "5C", "TC" },
-		//	{ "KD", "QD", "8D", "9D", "3D" },
-		//	{ "9H", "TH", "JH", "2H", "AH" }
-	//		};
-	
-	//anpassen
-	//private static String[][] fullHouses = {
-
-	//		};
-
-	private static String[][] fourKind = {
+	private static String[][] fourKinds = {
 			{ "2S", "2C", "2H", "2D", "7H" },
-			{ "AS", "AC", "5H", "AD", "AH" },
-			{ "3S", "2C", "3H", "3D", "3C" },
-			{ "9S", "9C", "JD", "9D", "9H" }
-			};
-	//anpassen
-//	private static String[][] straightFlushes = {
+			{ "AS", "AC", "AH", "5D", "AD" },
+			{ "4S", "4C", "3H", "4D", "4H" },
+			{ "7S", "7C", "7H", "7D", "5H" }
+	};
+	
+	private static String[][] flush = {
+			{ "2S", "3S", "7S", "KS", "JS" },
+			{ "QD", "7D", "2D", "5D", "AD" },
+			{ "TH", "8H", "3H", "5H", "4H" },
+			{ "6C", "7C", "8C", "AC", "KC" }
+	};
+	private static String[][] straight = {
+			{ "2H", "3H", "4S", "5S", "6D" },
+			{ "4D", "5C", "6H", "7S", "8D" },
+			{ "5H", "6C", "7S", "8D", "9H" },
+			{ "6D", "7H", "8S", "9C", "TC" }
+	};
+	private static String[][] straightFlush = {
+			{ "2H", "3H", "4H", "5H", "6H" },
+			{ "4D", "5D", "6D", "7D", "8D" },
+			{ "5H", "6H", "7H", "8H", "9H" },
+			{ "6C", "7C", "8C", "9C", "TC" }
+	};
+	private static String[][] fullHouse = {
+			{ "3D", "3H", "3C", "5H", "5H" },
+			{ "4D", "4H", "4C", "3H", "3H" },
+			{ "5D", "5H", "5C", "4H", "4H" },
+			{ "6D", "6H", "6C", "2H", "2H" }
+	};
 
-//			};
-
-	//private static String[][] royalFlushes = {
-	//		{ "TS", "JS", "QS", "KS", "AS" },
-	//		{ "KC", "TC", "QC", "AC", "JC" },
-	//		{ "JH", "QH", "AH", "TH", "KH" },
-	//		{ "KD", "QD", "JD", "TD", "AD" }
-	//		};
 	
 	
 	
@@ -84,13 +81,20 @@ public class HandTypeTest {
 	ArrayList<ArrayList<Card>> pairHands;
 	ArrayList<ArrayList<Card>> twoPairHands;
 	ArrayList<ArrayList<Card>> threeKindHands;
+	ArrayList<ArrayList<Card>> fourKindHands;
+	ArrayList<ArrayList<Card>> flushHand;
+	ArrayList<ArrayList<Card>> straightHand;
+	ArrayList<ArrayList<Card>> straightFlushHand;
+	ArrayList<ArrayList<Card>> fullHouseHand;
+
+
 //	ArrayList<ArrayList<Card>> straightHands;
 //	ArrayList<ArrayList<Card>> flushesHands;
 //	ArrayList<ArrayList<Card>> fullHousesHands;
-	ArrayList<ArrayList<Card>> fourKindHands;
 //	ArrayList<ArrayList<Card>> straightFlushesHands;
 //	ArrayList<ArrayList<Card>> royalFlushesHands;
 	
+
 	/**
 	 * The makeHands method is called before each test method,
 	 * and prepares the translated hands. We recreate these for
@@ -101,11 +105,13 @@ public class HandTypeTest {
 		highCardHands = makeHands(highCards);
 		pairHands = makeHands(pairs);
 		twoPairHands = makeHands(twoPairs);
-		threeKindHands = makeHands(threeKind);
-//		straightHands = makeHands(straights);
-//		flushesHands = makeHands(flushes);
-//		fullHousesHands = makeHands(fullHouses);
-		fourKindHands = makeHands(fourKind);
+		threeKindHands = makeHands(threeKinds);
+		fourKindHands = makeHands(fourKinds);
+		flushHand = makeHands(flush);
+		straightHand = makeHands(straight);
+		straightFlushHand = makeHands(straightFlush);
+		fullHouseHand = makeHands(fullHouse);
+
 //		straightFlushesHands = makeHands(straightFlushes);
 //		royalFlushesHands = makeHands(royalFlushes);
 		
