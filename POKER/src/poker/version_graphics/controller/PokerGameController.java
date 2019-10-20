@@ -1,5 +1,6 @@
 package poker.version_graphics.controller;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 import javafx.scene.control.Alert;
@@ -75,32 +76,33 @@ public class PokerGameController {
     	}
     	
 //evaluate winner
-    	Player w = null;
-    	Player p = model.getPlayer(0); 	
+    	   	Player w = null;
+        	Player p = model.getPlayer(0); 	
 
-    	for (int i = 1; i < PokerGame.NUM_PLAYERS; i++) {
-    	Player o = model.getPlayer(i);
-    		 
-    	if (p.compareTo(o) == -1){
-    		w = model.getPlayer(i);
+        	for (int i = 1; i < PokerGame.NUM_PLAYERS; i++) {
+        	Player o = model.getPlayer(i);
+        		 
+        	if (p.compareTo(o) == -1){
+        		w = model.getPlayer(i);
+        	}
+        	if (p.compareTo(o) == 1){
+        		w = p;
+        	}
+        	if (p.compareTo(o) == 0) {
+        		if(p.evaluateValues().ordinal() < o.evaluateValues().ordinal()) {
+           			 w = model.getPlayer(i);
+           			}
+        		if(p.evaluateValues().ordinal() > o.evaluateValues().ordinal()) {
+          			 w = p;
+          			}
+        	}
+        	if (w == null) {
+        		System.out.println("tiebreak");
+        	}
+        	else{
+        		System.out.println("Winner is " + (w.getPlayerName()));
+        	}  
+        	
     	}
-    	if (p.compareTo(o) == 1){
-    		w = p;
-    	}
-    	if (p.compareTo(o) == 0) {
-    		if(p.evaluateValues().ordinal() < o.evaluateValues().ordinal()) {
-       			 w = model.getPlayer(i);
-       			}
-    		if(p.evaluateValues().ordinal() > o.evaluateValues().ordinal()) {
-      			 w = p;
-      			}
-    	}
-    	if (w == null) {
-    		System.out.println("tiebreak");
-    	}
-    	else{
-    		System.out.println("Winner is " + (w.getPlayerName()));
-    	}  			
     }
-}
 }

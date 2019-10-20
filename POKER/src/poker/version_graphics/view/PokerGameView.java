@@ -2,6 +2,7 @@ package poker.version_graphics.view;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -12,6 +13,7 @@ import poker.version_graphics.PokerGame;
 import poker.version_graphics.model.PokerGameModel;
 
 public class PokerGameView {
+	private Label winnerIs;
 	private HBox players;
 	private ControlArea controls;
 	
@@ -19,6 +21,9 @@ public class PokerGameView {
 	
 	public PokerGameView(Stage stage, PokerGameModel model) {
 		this.model = model;
+		
+		winnerIs = new Label("Player X is the Winner!");
+
 		
 		// Create all of the player panes we need, and put them into an HBox
 		players = new HBox();
@@ -34,6 +39,7 @@ public class PokerGameView {
 		
 		// Put players and controls into a BorderPane
 		BorderPane root = new BorderPane();
+		root.setTop(winnerIs);
 		root.setCenter(players);
 		root.setBottom(controls);
 		
