@@ -3,6 +3,8 @@ package poker.version_graphics.model;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import poker.version_graphics.model.Card.Rank;
+
 public enum HandType {
     HighCard, OnePair, TwoPair, ThreeOfAKind, Straight, Flush, FullHouse, FourOfAKind, StraightFlush;
     
@@ -24,6 +26,8 @@ public enum HandType {
         
         return currentEval;
     }
+    
+
     
     public static boolean isOnePair(ArrayList<Card> cards) {
         boolean found = false;

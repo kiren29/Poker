@@ -1,11 +1,14 @@
 package poker.version_graphics.controller;
 
+import java.util.Comparator;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import poker.version_graphics.PokerGame;
 import poker.version_graphics.model.Card;
 import poker.version_graphics.model.DeckOfCards;
+import poker.version_graphics.model.HandType;
 import poker.version_graphics.model.Player;
 import poker.version_graphics.model.PokerGameModel;
 import poker.version_graphics.view.CardLabel;
@@ -70,5 +73,34 @@ public class PokerGameController {
             Alert alert = new Alert(AlertType.ERROR, "Not enough cards - shuffle first");
             alert.showAndWait();
     	}
+    	
+//evaluate winner
+    	Player w = null;
+    	Player p = model.getPlayer(0); 	
+
+    	for (int i = 1; i < PokerGame.NUM_PLAYERS; i++) {
+    	Player o = model.getPlayer(i);
+    		 
+    	if (p.compareTo(o) == -1){
+    		w = model.getPlayer(i);
+    	}
+    	if (p.compareTo(o) == 1){
+    		w = p;
+    	}
+    	if (p.compareTo(o) == 0) {
+    		if(p.evaluateValues().ordinal() < o.evaluateValues().ordinal()) {
+       			 w = model.getPlayer(i);
+       			}
+    		if(p.evaluateValues().ordinal() > o.evaluateValues().ordinal()) {
+      			 w = p;
+      			}
+    	}
+    	if (w == null) {
+    		System.out.println("tiebreak");
+    	}
+    	else{
+    		System.out.println("Winner is " + (w.getPlayerName()));
+    	}  			
     }
+}
 }
