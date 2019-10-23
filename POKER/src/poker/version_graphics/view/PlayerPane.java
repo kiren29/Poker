@@ -3,6 +3,7 @@ package poker.version_graphics.view;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import poker.version_graphics.model.Card;
 import poker.version_graphics.model.HandType;
@@ -10,9 +11,12 @@ import poker.version_graphics.model.Player;
 
 public class PlayerPane extends VBox {
     private Label lblName = new Label();
+    private Region spacer1 = new Region();
+    private Region spacer2 = new Region();
     private HBox hboxCards = new HBox();
     private Label lblEvaluation = new Label("--");
-    private Label wins = new Label("Wins: ");
+    private Label wins = new Label("Wins: " );
+    private Label winnerIs = new Label("Player X is the Winner!");
     
     // Link to player object
     private Player player;
@@ -22,7 +26,10 @@ public class PlayerPane extends VBox {
         this.getStyleClass().add("player"); // CSS style class
         
         // Add child nodes
-        this.getChildren().addAll( lblName, hboxCards, lblEvaluation);
+        HBox h1 = new HBox();
+        h1.getChildren().addAll(lblName, spacer1, wins);
+        HBox.setHgrow(spacer1, Priority.ALWAYS); 
+        this.getChildren().addAll( h1,hboxCards, lblEvaluation);
         
         // Add CardLabels for the cards
         for (int i = 0; i < 5; i++) {
@@ -30,7 +37,6 @@ public class PlayerPane extends VBox {
             hboxCards.getChildren().add(lblCard);
         }
     }
-    
     public void setPlayer(Player player) {
     	this.player = player;
     	updatePlayerDisplay(); // Immediately display the player information
@@ -50,4 +56,10 @@ public class PlayerPane extends VBox {
     			lblEvaluation.setText("--");
     	}
     }
-}
+	
+	
+	public void addPlayer() {
+		// TODO Auto-generated method stub
+		
+	}}
+    

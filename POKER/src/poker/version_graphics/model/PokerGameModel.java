@@ -7,20 +7,15 @@ import poker.version_graphics.PokerGame;
 public class PokerGameModel {
 	private final ArrayList<Player> players = new ArrayList<>();
 	private DeckOfCards deck;
-	public static final int rounds = 10;
 	
 	public PokerGameModel() {
 		for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
-			players.add(new Player("Player " + i));
+			players.add(new Player("Player " + (i+1)));
 			
 		}
 		
 		deck = new DeckOfCards();
-	}
-	public void PokerGameRounds() {
-		for (int i = 0; i < rounds; i++) {
-			players.add(new Player("Rounds: " + i));
-		}
+	
 	}
 	
 	public Player getPlayer(int i) {

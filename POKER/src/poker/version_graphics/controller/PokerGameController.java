@@ -3,9 +3,11 @@ package poker.version_graphics.controller;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.HBox;
 import poker.version_graphics.PokerGame;
 import poker.version_graphics.model.Card;
 import poker.version_graphics.model.DeckOfCards;
+import poker.version_graphics.model.HandType;
 import poker.version_graphics.model.Player;
 import poker.version_graphics.model.PokerGameModel;
 import poker.version_graphics.view.CardLabel;
@@ -26,9 +28,12 @@ public class PokerGameController {
 	}
 	
     private void addPlayer() {
-    
+    	for(int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
+			PlayerPane pp = view.getPlayerPane(i);
+			
     	}
-
+			
+    }
 	/**
      * Remove all cards from players hands, and shuffle the deck
      */
@@ -38,17 +43,18 @@ public class PokerGameController {
     		p.discardHand();
     		PlayerPane pp = view.getPlayerPane(i);
     		pp.updatePlayerDisplay();
-    	}
-
+    	
     	model.getDeck().shuffle();
+    	}
     }
     
-    /**
+    /**}
      * Deal each player five cards, then evaluate the two hands
      */
     private void deal() {
     	int cardsRequired = PokerGame.NUM_PLAYERS * Player.HAND_SIZE;
     	DeckOfCards deck = model.getDeck();
+ 
     	if (cardsRequired <= deck.getCardsRemaining()) {
         	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
         		Player p = model.getPlayer(i);
@@ -60,10 +66,43 @@ public class PokerGameController {
         		p.evaluateHand();
         		PlayerPane pp = view.getPlayerPane(i);
         		pp.updatePlayerDisplay();
+        		
         	}
     	} else {
             Alert alert = new Alert(AlertType.ERROR, "Not enough cards - shuffle first");
             alert.showAndWait();
     	}
     }
-}
+    	public void WinnerMethode() {
+            Player w = null;
+            Player p = model.getPlayer(0); 	
+    	
+
+	for (int i = 1; i < PokerGame.NUM_PLAYERS; i++) {
+	Player o = model.getPlayer(i);
+	
+	if (p.compareTo(o) == -1){
+		w = model.getPlayer(i);
+	}
+	if (p.compareTo(o) == 1){
+		w = p;
+	}
+	if (p.compareTo(o) == 0) {
+		if(p.evaluateHand().ordinal() < o.evaluateHand().ordinal()) {
+				 w = model.getPlayer(i);
+				}
+		if(p.evaluateHand().ordinal() > o.evaluateHand().ordinal()) {
+				 w = p;
+				}
+	}
+	if (w == null) {
+		System.out.println("tiebreak");
+	}
+	else{
+		System.out.println("Winner is " + (w.getPlayerName()));
+	}
+
+	    	}
+	    	}
+	    }
+	

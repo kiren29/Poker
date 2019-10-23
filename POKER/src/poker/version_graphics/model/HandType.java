@@ -3,6 +3,8 @@ package poker.version_graphics.model;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import poker.version_graphics.model.Card.Rank;
+
 public enum HandType {
     HighCard, OnePair, TwoPair, ThreeOfAKind, Straight, Flush, FullHouse, FourOfAKind, StraightFlush;
     
@@ -21,7 +23,9 @@ public enum HandType {
         if (isFullHouse(cards)) currentEval = FullHouse;
         if (isFourOfAKind(cards)) currentEval = FourOfAKind;
         if (isStraightFlush(cards)) currentEval = StraightFlush;
-        
+        /*
+        if (isRoyalFlush(cards)) currentEval = royalFlush;
+        */
         return currentEval;
     }
     
@@ -60,10 +64,6 @@ public enum HandType {
         for (int i = 0; i < cards.size() - 1 && !found; i++) {
             for (int j = i+1; j < cards.size() && !found; j++) {
             	for (int k = j+1; k < cards.size() && !found; k++) {
-            		System.out.println(cards);
-        			System.out.println(cards.get(i).getRank());
-        			System.out.println(cards.get(j).getRank());
-        			System.out.println(cards.get(k).getRank());
                 if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank()) 
 
                 	found = true;
@@ -116,10 +116,10 @@ public enum HandType {
 
         for (int i = 0; i < cards.size() - 2 && !threeOfAKindFound; i++) {
             for (int j = i + 1; j < cards.size() - 1 && !threeOfAKindFound; j++) {
-                for (int k = j + 1; k < cards.size() && !threeOfAKindFound; k++) {
-                    if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(j).getRank() == cards.get(k).getRank()) {
+                for (int l = j + 1; l < cards.size() && !threeOfAKindFound; l++) {
+                    if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(j).getRank() == cards.get(l).getRank()) {
                         threeOfAKindFound = true;
-                        clonedCards.remove(k);
+                        clonedCards.remove(l);
                         clonedCards.remove(j);
                         clonedCards.remove(i);  
                     }
@@ -138,18 +138,12 @@ public enum HandType {
             for (int j = i+1; j < cards.size() && !found; j++) {
             	for (int k = j+1; k < cards.size() && !found; k++) {
             		for (int l = k+1; l < cards.size() && !found; l++) {
-            	        System.out.println(cards);
-            			System.out.println(cards.get(i).getRank());
-            			System.out.println(cards.get(j).getRank());
-            			System.out.println(cards.get(k).getRank());
-            			System.out.println(cards.get(l).getRank());
                 if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank() && cards.get(i).getRank() == cards.get(l).getRank()) 
                 	found = true;
             		}
             	}
             }
         }
-        System.out.println("Four "+found);
 		return found;
     }
     
@@ -160,5 +154,14 @@ public enum HandType {
         }
         return found;
     }
-}
+    /*
+    public static boolean isRoyalFlush(ArrayList<Card> cards) {
+    	boolean found = false;
+    	if(isStraight(cards)&& isFlush(cards)) {
+        	found = true;
+        }
+        return found;
 
+    }
+    */
+}
