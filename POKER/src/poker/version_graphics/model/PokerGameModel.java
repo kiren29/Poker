@@ -25,4 +25,5 @@ public class PokerGameModel {
 	public DeckOfCards getDeck() {
 		return deck;
 	}
-}
+	
+    }

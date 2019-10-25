@@ -10,6 +10,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import poker.version_graphics.model.Player;
 import poker.version_graphics.PokerGame;
 import poker.version_graphics.model.PokerGameModel;
 
@@ -69,4 +70,11 @@ public class PokerGameView {
 	public Button getAddPlayerButton() {
 		return controls.btnPlayer;
 	}
+	public void updateWinnerDisplay(Player w) {
+		if (w == null)
+			winnerIs.setText("Tiebreak - Split pot");
+		else 
+			winnerIs.setText("The Winner is "+w.getPlayerName());
+	}
+
 }

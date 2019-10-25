@@ -1,6 +1,7 @@
 package poker.version_graphics.controller;
 
 import javafx.scene.control.Alert;
+import java.util.Comparator;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
@@ -17,6 +18,7 @@ import poker.version_graphics.view.PokerGameView;
 public class PokerGameController {
 	private PokerGameModel model;
 	private PokerGameView view;
+	private Label winnerIs;
 	
 	public PokerGameController(PokerGameModel model, PokerGameView view) {
 		this.model = model;
@@ -38,6 +40,7 @@ public class PokerGameController {
      * Remove all cards from players hands, and shuffle the deck
      */
     private void shuffle() {
+    	int rounds = 0;
     	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
     		Player p = model.getPlayer(i);
     		p.discardHand();
@@ -45,6 +48,7 @@ public class PokerGameController {
     		pp.updatePlayerDisplay();
     	
     	model.getDeck().shuffle();
+    	rounds++;
     	}
     }
     
@@ -72,37 +76,13 @@ public class PokerGameController {
             Alert alert = new Alert(AlertType.ERROR, "Not enough cards - shuffle first");
             alert.showAndWait();
     	}
+    	    	
+	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++)
+    {
+        PlayerPane pp = view.getPlayerPane(i);
+        pp.getLblRoundsWon().setText(Integer.toString(model.getPlayer(i).getRoundsWon()));
     }
-    	public void WinnerMethode() {
-            Player w = null;
-            Player p = model.getPlayer(0); 	
-    	
+}
 
-	for (int i = 1; i < PokerGame.NUM_PLAYERS; i++) {
-	Player o = model.getPlayer(i);
-	
-	if (p.compareTo(o) == -1){
-		w = model.getPlayer(i);
-	}
-	if (p.compareTo(o) == 1){
-		w = p;
-	}
-	if (p.compareTo(o) == 0) {
-		if(p.evaluateHand().ordinal() < o.evaluateHand().ordinal()) {
-				 w = model.getPlayer(i);
-				}
-		if(p.evaluateHand().ordinal() > o.evaluateHand().ordinal()) {
-				 w = p;
-				}
-	}
-	if (w == null) {
-		System.out.println("tiebreak");
-	}
-	else{
-		System.out.println("Winner is " + (w.getPlayerName()));
-	}
+}
 
-	    	}
-	    	}
-	    }
-	
