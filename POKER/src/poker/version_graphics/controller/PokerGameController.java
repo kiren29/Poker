@@ -98,9 +98,11 @@ public class PokerGameController {
         	}
         	if (w == null) {
         		System.out.println("tiebreak");
+        		view.updateWinnerDisplay(null);
         	}
         	else{
         		System.out.println("Winner is " + (w.getPlayerName()));
+        		view.updateWinnerDisplay(w);
         	}  
         	
     	}
