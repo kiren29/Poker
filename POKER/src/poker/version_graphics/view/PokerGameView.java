@@ -1,5 +1,7 @@
 package poker.version_graphics.view;
 
+import java.util.ArrayList;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -70,11 +72,12 @@ public class PokerGameView {
 	public Button getAddPlayerButton() {
 		return controls.btnPlayer;
 	}
-	public void updateWinnerDisplay(Player w) {
-		if (w == null)
+	public void updateWinnerDisplay(ArrayList<Player> winner) {
+		if (winner.isEmpty() == true)
 			winnerIs.setText("Tiebreak - Split pot");
 		else 
-			winnerIs.setText("The Winner is "+w.getPlayerName());
+    		for (Player myWinners : winner)
+			winnerIs.setText("The Winner is "+myWinners.getPlayerName());
 	}
 	
 }

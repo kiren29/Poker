@@ -76,33 +76,37 @@ public class PokerGameController {
     	}
     	
 //evaluate winner
-    	   	Player w = null;
-        	Player p = model.getPlayer(0); 	
+    	   	ArrayList<Player> winner = new ArrayList<Player>();
+    	   	winner.add(model.getPlayer(0));
 
         	for (int i = 1; i < PokerGame.NUM_PLAYERS; i++) {
         	Player o = model.getPlayer(i);
-        		 
+        	Player p = winner.get(0);	 
         	if (p.compareTo(o) == -1){
-        		w = model.getPlayer(i);
+        		winner.remove(0);
+        		winner.add(model.getPlayer(i));
+            	System.out.println("-1"+o.getPlayerName());	
         	}
         	if (p.compareTo(o) == 1){
-        		w = p;
+        	System.out.println("1"+p.getPlayerName());	
         	}
         	if (p.compareTo(o) == 0) {
         		if(p.evaluateValues().ordinal() < o.evaluateValues().ordinal()) {
-           			 w = model.getPlayer(i);
+            		winner.remove(0);
+            		winner.add(model.getPlayer(i));
            			}
         		if(p.evaluateValues().ordinal() > o.evaluateValues().ordinal()) {
-          			 w = p;
+          			 
           			}
         	}
-        	if (w == null) {
+        	if (winner.isEmpty() == true) {
         		System.out.println("tiebreak");
         		view.updateWinnerDisplay(null);
         	}
         	else{
-        		System.out.println("Winner is " + (w.getPlayerName()));
-        		view.updateWinnerDisplay(w);
+        		for (Player myWinners : winner)
+        		System.out.println("Winner is " + (myWinners.getPlayerName()));
+        		view.updateWinnerDisplay(winner);
         	}  
         	
     	}

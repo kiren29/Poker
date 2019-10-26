@@ -97,7 +97,7 @@ public class Player implements Comparable<Player> {
      * Hands are compared, based on the evaluation they have.
      */
     @Override
-    public int compareTo(Player o) {   	
-        return handType.compareTo(o.handType);
+    public int compareTo(Player o) {
+    	return handType.compareTo(o.handType);
     }
 }
