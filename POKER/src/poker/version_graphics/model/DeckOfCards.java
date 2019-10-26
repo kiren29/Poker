@@ -27,7 +27,7 @@ public class DeckOfCards {
         return cardsRemaining;
     }
     public int getCardsRemaining() {
-    	return cardsRemaining.get();
+        return cardsRemaining.get();
     }
 
     /**

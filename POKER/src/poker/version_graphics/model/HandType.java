@@ -29,8 +29,6 @@ public enum HandType {
         return currentEval;
     }
     
-
-    
     public static boolean isOnePair(ArrayList<Card> cards) {
         boolean found = false;
         for (int i = 0; i < cards.size() - 1 && !found; i++) {
@@ -61,27 +59,28 @@ public enum HandType {
     }
     
     public static boolean isThreeOfAKind(ArrayList<Card> cards) {
-    	boolean found = false;
+        boolean found = false;
 
         for (int i = 0; i < cards.size() - 1 && !found; i++) {
             for (int j = i+1; j < cards.size() && !found; j++) {
-            	for (int k = j+1; k < cards.size() && !found; k++) {
+                for (int k = j+1; k < cards.size() && !found; k++) {
                 if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank()) 
 
-                	found = true;
-            	}
+                    found = true;
+                }
             }
         }
+        System.out.println("Three "+found);
         return found;
     }
     
     public static boolean isStraight(ArrayList<Card> cards) {
-    	int counter = 0;
-    	boolean found = false;
-    	
-    	cards.sort(Comparator.comparing(Card::getRank));
-    	
-    	 for (int i = 0; i < cards.size()-1; i++) {
+        int counter = 0;
+        boolean found = false;;
+        
+        cards.sort(Comparator.comparing(Card::getRank));
+        
+         for (int i = 0; i < cards.size()-1; i++) {
              if (cards.get(i).getRank().compareTo(cards.get(i + 1).getRank()) == -1) {
                  counter++;
                  if (counter == 4) {
@@ -93,26 +92,26 @@ public enum HandType {
      }
     
     public static boolean isFlush(ArrayList<Card> cards) {
-    	boolean found = false;
-    	for (int i = 0; i < cards.size() - 1 && !found; i++) {
-    		for (int j = i+1; j < cards.size() && !found; j++) {
-    			for (int h = j+1; h < cards.size() && !found; h++) {
-    				for (int k = h+1; k < cards.size() && !found; k++) {
-    					for (int l = k+1; l < cards.size() && !found; l++) {
-    						if (cards.get(i).getSuit() == cards.get(j).getSuit() && cards.get(j).getSuit()
-    								== cards.get(h).getSuit() && cards.get(h).getSuit() == cards.get(k).getSuit()
-    								&& cards.get(k).getSuit()== cards.get(l).getSuit()) found = true;
-    					}
-    				}
-    			}
-    		}
-    	}
+        boolean found = false;
+        for (int i = 0; i < cards.size() - 1 && !found; i++) {
+            for (int j = i+1; j < cards.size() && !found; j++) {
+                for (int h = j+1; h < cards.size() && !found; h++) {
+                    for (int k = h+1; k < cards.size() && !found; k++) {
+                        for (int l = k+1; l < cards.size() && !found; l++) {
+                            if (cards.get(i).getSuit() == cards.get(j).getSuit() && cards.get(j).getSuit()
+                                    == cards.get(h).getSuit() && cards.get(h).getSuit() == cards.get(k).getSuit()
+                                    && cards.get(k).getSuit()== cards.get(l).getSuit()) found = true;
+                        }
+                    }
+                }
+            }
+        }
         return found;
     }
 
     
     public static boolean isFullHouse(ArrayList<Card> cards) {
-    	boolean threeOfAKindFound = false;
+        boolean threeOfAKindFound = false;
         ArrayList<Card> clonedCards = (ArrayList<Card>) cards.clone();
 
         for (int i = 0; i < cards.size() - 2 && !threeOfAKindFound; i++) {
@@ -133,33 +132,33 @@ public enum HandType {
     
     public static boolean isFourOfAKind(ArrayList<Card> cards) {       
 
-    	boolean found = false;
+        boolean found = false;
 
         for (int i = 0; i < cards.size() - 1 && !found; i++) {
             for (int j = i+1; j < cards.size() && !found; j++) {
-            	for (int k = j+1; k < cards.size() && !found; k++) {
-            		for (int l = k+1; l < cards.size() && !found; l++) {
+                for (int k = j+1; k < cards.size() && !found; k++) {
+                    for (int l = k+1; l < cards.size() && !found; l++) {
                 if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank() && cards.get(i).getRank() == cards.get(l).getRank()) 
-                	found = true;
-            		}
-            	}
+                    found = true;
+                    }
+                }
             }
         }
-		return found;
+        return found;
     }
     
     public static boolean isStraightFlush(ArrayList<Card> cards) {
-    	boolean found = false;
-    	if(isStraight(cards)&& isFlush(cards)) {
-        	found = true;
+        boolean found = false;
+        if(isStraight(cards)&& isFlush(cards)) {
+            found = true;
         }
         return found;
     }
     /*
     public static boolean isRoyalFlush(ArrayList<Card> cards) {
-    	boolean found = false;
-    	if(isStraight(cards)&& isFlush(cards)) {
-        	found = true;
+        boolean found = false;
+        if(isStraight(cards)&& isFlush(cards)) {
+            found = true;
         }
         return found;
 
