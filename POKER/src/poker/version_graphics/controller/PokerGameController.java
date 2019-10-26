@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import javafx.scene.control.Alert;
+import java.util.Comparator;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.HBox;
 import poker.version_graphics.PokerGame;
 import poker.version_graphics.model.Card;
 import poker.version_graphics.model.DeckOfCards;
@@ -19,6 +21,7 @@ import poker.version_graphics.view.PokerGameView;
 public class PokerGameController {
 	private PokerGameModel model;
 	private PokerGameView view;
+	private Label winnerIs;
 	
 	public PokerGameController(PokerGameModel model, PokerGameView view) {
 		this.model = model;
@@ -32,32 +35,46 @@ public class PokerGameController {
 
 
     private void addPlayer() {
+<<<<<<< HEAD
     	DeckOfCards deck = model.getDeck();
 
+=======
+    	for(int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
+			PlayerPane pp = view.getPlayerPane(i);
+			
+>>>>>>> branch 'master' of https://github.com/kiren29/Poker.git
     	}
+<<<<<<< HEAD
 	
 
 
+=======
+			
+    }
+>>>>>>> branch 'master' of https://github.com/kiren29/Poker.git
 	/**
      * Remove all cards from players hands, and shuffle the deck
      */
     private void shuffle() {
+    	int rounds = 0;
     	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
     		Player p = model.getPlayer(i);
     		p.discardHand();
     		PlayerPane pp = view.getPlayerPane(i);
     		pp.updatePlayerDisplay();
-    	}
-
+    	
     	model.getDeck().shuffle();
+    	rounds++;
+    	}
     }
     
-    /**
+    /**}
      * Deal each player five cards, then evaluate the two hands
      */
     private void deal() {
     	int cardsRequired = PokerGame.NUM_PLAYERS * Player.HAND_SIZE;
     	DeckOfCards deck = model.getDeck();
+ 
     	if (cardsRequired <= deck.getCardsRemaining()) {
         	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
         		Player p = model.getPlayer(i);
@@ -69,11 +86,13 @@ public class PokerGameController {
         		p.evaluateHand();
         		PlayerPane pp = view.getPlayerPane(i);
         		pp.updatePlayerDisplay();
+        		
         	}
     	} else {
             Alert alert = new Alert(AlertType.ERROR, "Not enough cards - shuffle first");
             alert.showAndWait();
     	}
+<<<<<<< HEAD
     	
 //evaluate winner
     	   	ArrayList<Player> winner = new ArrayList<Player>();
@@ -110,5 +129,19 @@ public class PokerGameController {
         	}  
         	
     	}
+=======
+    	    	
+	for (int i = 0; i < PokerGame.NUM_PLAYERS; i++)
+    {
+        PlayerPane pp = view.getPlayerPane(i);
+        pp.getLblRoundsWon().setText(Integer.toString(model.getPlayer(i).getRoundsWon()));
+>>>>>>> branch 'master' of https://github.com/kiren29/Poker.git
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+}
+
+>>>>>>> branch 'master' of https://github.com/kiren29/Poker.git

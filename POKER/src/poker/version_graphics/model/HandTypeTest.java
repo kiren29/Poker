@@ -72,9 +72,16 @@ public class HandTypeTest {
 			{ "5D", "5H", "5C", "4H", "4H" },
 			{ "6D", "6H", "6C", "2H", "2H" }
 	};
+	/**
+	private static ArrayList<ArrayList<Card>> royalFlush = {
+			{"9H", "8C", "2H", "4H", "3H"},
+			{ "4D", "5D", "6D", "7D", "8D" },
+			{ "6F", "5H", "8H", "9H", "8H" },
+			{ "6C", "5C", "5C", "9C", "TC" }
+	};
 
-	
-	
+	*/
+
 	
 	// This is where we store the translated hands
 	ArrayList<ArrayList<Card>> highCardHands;
@@ -86,17 +93,28 @@ public class HandTypeTest {
 	ArrayList<ArrayList<Card>> straightHand;
 	ArrayList<ArrayList<Card>> straightFlushHand;
 	ArrayList<ArrayList<Card>> fullHouseHand;
+	/**
+	ArrayList<ArrayList<Card>> royalFlush;
 
+<<<<<<< HEAD
 //	ArrayList<ArrayList<Card>> royalFlushesHands;
+=======
+
+//	ArrayList<ArrayList<Card>> straightHands;
+//	ArrayList<ArrayList<Card>> flushesHands;
+//	ArrayList<ArrayList<Card>> fullHousesHands;
+//	ArrayList<ArrayList<Card>> straightFlushesHands;
+>>>>>>> branch 'master' of https://github.com/kiren29/Poker.git
 	
 
 	/**
 	 * The makeHands method is called before each test method,
 	 * and prepares the translated hands. We recreate these for
 	 * each test method, in case the test method damages the data.
+	
 	 */
 	@Before
-	public void makeHands() {
+	public void makeHands(ArrayList<ArrayList<Card>> cards) {
 		highCardHands = makeHands(highCards);
 		pairHands = makeHands(pairs);
 		twoPairHands = makeHands(twoPairs);
@@ -106,6 +124,8 @@ public class HandTypeTest {
 		straightHand = makeHands(straight);
 		straightFlushHand = makeHands(straightFlush);
 		fullHouseHand = makeHands(fullHouse);
+	}
+		/**royalFlush = makeHands(royalFlush);
 
 //		royalFlushesHands = makeHands(royalFlushes);
 		
@@ -267,6 +287,40 @@ public class HandTypeTest {
 	}
 	
 	
+	
+	/**
+	//
+	@Test
+	public void testRoyalFlush() {
+		for (ArrayList<Card> hand : highCardHands) {
+			assertFalse(HandType.isStraightFlush(hand));
+		}
+		for (ArrayList<Card> hand : pairHands) {
+			assertFalse(HandType.isStraightFlush(hand));
+		}
+		for (ArrayList<Card> hand : twoPairHands) {
+			assertFalse(HandType.isStraightFlush(hand));
+		}
+		for (ArrayList<Card> hand : threeKindHands) {
+			assertFalse(HandType.isStraightFlush(hand));
+		}
+		for (ArrayList<Card> hand : straightHand) {
+			assertFalse(HandType.isStraightFlush(hand));
+		}
+		for (ArrayList<Card> hand : flushHand) {
+			assertFalse(HandType.isStraightFlush(hand));
+		}
+		for (ArrayList<Card> hand : fourKindHands) {
+			assertFalse(HandType.isStraightFlush(hand));
+		}
+		
+		for (ArrayList<Card> hand : straightFlushHand) {
+			assertFalse(HandType.isStraightFlush(hand));
+		}
+		for(ArrayList<Card> hand : royalFlushHand) {
+			assertTrue(HandType.isRoyalFlush(hand));
+		}
+	}
 	
 	/**
 	 * Make an ArrayList of hands from an array of string-arrays
