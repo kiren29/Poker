@@ -66,10 +66,6 @@ public enum HandType {
         for (int i = 0; i < cards.size() - 1 && !found; i++) {
             for (int j = i+1; j < cards.size() && !found; j++) {
             	for (int k = j+1; k < cards.size() && !found; k++) {
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/kiren29/Poker.git
                 if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank()) 
 
                 	found = true;
@@ -143,10 +139,6 @@ public enum HandType {
             for (int j = i+1; j < cards.size() && !found; j++) {
             	for (int k = j+1; k < cards.size() && !found; k++) {
             		for (int l = k+1; l < cards.size() && !found; l++) {
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/kiren29/Poker.git
                 if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(i).getRank() == cards.get(k).getRank() && cards.get(i).getRank() == cards.get(l).getRank()) 
                 	found = true;
             		}

@@ -11,19 +11,10 @@ public class PokerGameModel {
 	public PokerGameModel() {
 		for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
 			players.add(new Player("Player " + (i+1)));
-<<<<<<< HEAD
-=======
-			
->>>>>>> branch 'master' of https://github.com/kiren29/Poker.git
-		}
-		
-		deck = new DeckOfCards();
-<<<<<<< HEAD
-=======
 	
->>>>>>> branch 'master' of https://github.com/kiren29/Poker.git
+		deck = new DeckOfCards();	
 	}
-	
+	}
 	public Player getPlayer(int i) {
 		return players.get(i);
 	}

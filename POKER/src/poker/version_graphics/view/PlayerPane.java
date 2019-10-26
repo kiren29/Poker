@@ -9,22 +9,18 @@ import poker.version_graphics.PokerGame;
 import poker.version_graphics.model.Card;
 import poker.version_graphics.model.HandType;
 import poker.version_graphics.model.Player;
-import poker.version_graphics.model.Winner;
 
 public class PlayerPane extends VBox {
     private Label lblName = new Label();
     private Label WinnerName = new Label();
     private Region spacer1 = new Region();
-    private Region spacer2 = new Region();
     private HBox hboxCards = new HBox();
     private Label lblEvaluation = new Label("--");
-<<<<<<< HEAD
-=======
+
     private Label lblRoundsWon = new Label();
-    private Label wins = new Label("Wins: " +lblRoundsWon);
-    
    
->>>>>>> branch 'master' of https://github.com/kiren29/Poker.git
+    
+
     
     // Link to player object
     private Player player;
@@ -33,26 +29,14 @@ public class PlayerPane extends VBox {
         super(); // Always call super-constructor first !!
         this.getStyleClass().add("player");// CSS style class
        
-        WinnerName = set(Winner.getWinnerName());
         
         // Add child nodes
-<<<<<<< HEAD
-        this.getChildren().addAll(lblName, hboxCards, lblEvaluation);
-=======
-        HBox h2 = new HBox();
-        h2.getChildren().addAll(wins);
-       
-        
+
         HBox h1 = new HBox();
-        h1.getChildren().addAll(lblName, WinnerName, spacer1, h2);
+        h1.getChildren().addAll(lblName, spacer1);
         HBox.setHgrow(spacer1, Priority.ALWAYS); 
-        
-        
-        
-        this.getChildren().addAll(h1, hboxCards, lblEvaluation); 
-        
->>>>>>> branch 'master' of https://github.com/kiren29/Poker.git
-        
+        this.getChildren().addAll( h1,hboxCards, lblEvaluation);
+       
         // Add CardLabels for the cards
         for (int i = 0; i < 5; i++) {
             Label lblCard = new CardLabel();
@@ -91,12 +75,7 @@ public class PlayerPane extends VBox {
         }
         }
 
-    private Label set(Object winnerName2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public Label getLblRoundsWon()
-    {
+	public Label getLblRoundsWon()    {
         return lblRoundsWon;
     }
 }

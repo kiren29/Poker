@@ -43,13 +43,11 @@ public class Player implements Comparable<Player> {
         return cards.size();
     }
 
-    public int getRoundsWon()
-    {
+    public int getRoundsWon() {
         return roundsWon;
     }
 
-    public void winRound()
-    {
+    public void winRound()  {
         roundsWon++;
     }
 
@@ -63,57 +61,11 @@ public class Player implements Comparable<Player> {
         }
         return handType;
     }
-<<<<<<< HEAD
-    
+   
+
     public Rank evaluateValues() {
     	Rank rank = null;
     	cards.sort(Comparator.comparing(Card::getRank));
-    	
-    	if (handType == HandType.HighCard) {
-    		rank = cards.get(4).getRank();
-    	}
-    	if (handType == HandType.OnePair) {
-    	 	 for (int i = 0; i < cards.size()-1 && rank == null; i++) {
-                 if (cards.get(i).getRank().compareTo(cards.get(i + 1).getRank()) == 0) {
-                    rank= cards.get(i).getRank(); 
-                 }
-    	 	 }
-    	}
-    	// noch definieren: if (handType == HandType.TwoPair){}
-    	
-    	if (handType == HandType.ThreeOfAKind) {
-   	 	 for (int i = 0; i < cards.size()-1 && rank == null; i++) {
-                if (cards.get(i).getRank().compareTo(cards.get(i + 1).getRank()) == 0) {
-                   rank= cards.get(i).getRank();
-                }
-   	 	 }
-    	}
-    	if (handType == HandType.Straight) {
-    		rank = cards.get(4).getRank();
-    	}
-    	if (handType == HandType.Flush) {
-    		rank = cards.get(4).getRank();
-    		//nächsthöhere vergleichen - alle fünf
-    	}
-    	// noch definieren: if (handType == HandType.FullHouse){}
-    	
-    	if (handType == HandType.FourOfAKind) {
-      	 	 for (int i = 0; i < cards.size()-1 && rank == null; i++) {
-                   if (cards.get(i).getRank().compareTo(cards.get(i + 1).getRank()) == 0) {
-                      rank= cards.get(i).getRank(); 
-                   }
-      	 	 }
-       	}
-    	if (handType == HandType.StraightFlush) {
-    		rank = cards.get(4).getRank();
-    	}
-    	return rank;
-    }
-=======
-    public Rank evaluateValues() {
-    	Rank rank = null;
-    	cards.sort(Comparator.comparing(Card::getRank));
->>>>>>> branch 'master' of https://github.com/kiren29/Poker.git
 
     	if (handType == HandType.HighCard) {
     		rank = cards.get(4).getRank();

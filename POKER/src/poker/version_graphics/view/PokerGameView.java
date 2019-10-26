@@ -31,11 +31,9 @@ public class PokerGameView {
 		
 		// Create all of the player panes we need, and put them into an HBox
 		players = new HBox();
-<<<<<<< HEAD
+
 		for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
-=======
-		for (int i = 0; i < 2; i++){
->>>>>>> branch 'master' of https://github.com/kiren29/Poker.git
+
 			PlayerPane pp = new PlayerPane();
 			pp.setPlayer(model.getPlayer(i)); // link to player object in the logic
 			players.getChildren().add(pp);
@@ -47,14 +45,10 @@ public class PokerGameView {
 		
 		// Put players and controls into a BorderPane
 		BorderPane root = new BorderPane();
-<<<<<<< HEAD
+
 		root.setTop(winnerIs);
 		root.setCenter(players);
-=======
-		root.setLeft(players);
->>>>>>> branch 'master' of https://github.com/kiren29/Poker.git
 		root.setBottom(controls);
-		root.setTop(winnerIs);
 		
 		
 		// Disallow resizing - which is difficult to get right with images
@@ -84,7 +78,7 @@ public class PokerGameView {
 	public Button getAddPlayerButton() {
 		return controls.btnPlayer;
 	}
-<<<<<<< HEAD
+
 	public void updateWinnerDisplay(ArrayList<Player> winner) {
 		if (winner.isEmpty() == true)
 			winnerIs.setText("Tiebreak - Split pot");
@@ -94,13 +88,3 @@ public class PokerGameView {
 	}
 	
 }
-=======
-	public void updateWinnerDisplay(Player w) {
-		if (w == null)
-			winnerIs.setText("Tiebreak - Split pot");
-		else 
-			winnerIs.setText("The Winner is "+w.getPlayerName());
-	}
-
-}
->>>>>>> branch 'master' of https://github.com/kiren29/Poker.git
