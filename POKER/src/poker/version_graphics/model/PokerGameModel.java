@@ -7,14 +7,18 @@ import poker.version_graphics.PokerGame;
 public class PokerGameModel {
     private final ArrayList<Player> players = new ArrayList<>();
     private DeckOfCards deck;
+    private int roundsWon;
+    private int rounds;
     
     public PokerGameModel() {
+    	super(); // Always call super-constructor first !!
+       
         for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
             players.add(new Player("Player " + (i+1)));
             
         }
         
-        deck = new DeckOfCards();
+        setDeck(new DeckOfCards());
     
     }
     
@@ -25,5 +29,30 @@ public class PokerGameModel {
     public DeckOfCards getDeck() {
         return deck;
     }
-}
 
+	public void setDeck(DeckOfCards deck) {
+		this.deck = deck;
+	}
+	public Player addPlayer() { // Button Add Player - to fit the Player Numbers
+		players.add(new Player("Player " + (players.size()+1)));
+		return players.get(players.size()-1);
+	}
+	
+	
+	public int getRoundsWon(){
+	    return roundsWon;
+	}
+	
+	public void winRound(int getRoundsWon){
+	    roundsWon++;
+	}
+	public int getRounds() {
+		return rounds++;
+	}
+		
+
+	}
+	
+	
+		
+	

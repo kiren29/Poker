@@ -19,6 +19,7 @@ import poker.version_graphics.view.PokerGameView;
 public class PokerGameController {
     private PokerGameModel model;
     private PokerGameView view;
+    protected int rounds;
     
     public PokerGameController(PokerGameModel model, PokerGameView view) {
         this.model = model;
@@ -29,12 +30,11 @@ public class PokerGameController {
         view.getAddPlayerButton().setOnAction(e -> addPlayer());
     }
     
-    private void addPlayer() {
-        for(int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
-            PlayerPane pp = view.getPlayerPane(i);
-            
-        }
-            
+    private void addPlayer() { // SetOnAction Add Player Button ruft view auf
+    	if(PokerGame.NUM_PLAYERS<6) {
+    		PokerGame.increaseNumPlayers();
+    		view.addPlayerPane();
+    		}       
     }
     /**
      * Remove all cards from players hands, and shuffle the deck
@@ -54,6 +54,7 @@ public class PokerGameController {
      * Deal each player five cards, then evaluate the two hands
      */
     private void deal() {
+    	rounds=0;
         int cardsRequired = PokerGame.NUM_PLAYERS * Player.HAND_SIZE;
         DeckOfCards deck = model.getDeck();
  
@@ -68,6 +69,8 @@ public class PokerGameController {
                 p.evaluateHand();
                 PlayerPane pp = view.getPlayerPane(i);
                 pp.updatePlayerDisplay();
+                rounds++;
+                
                 
             }
         } else {
@@ -125,10 +128,16 @@ public class PokerGameController {
 
            for (Player myWinners : winner)
 
-           System.out.println("Winner is " + (myWinners.getPlayerName()));
+           System.out.println("Winner is: " + (myWinners.getPlayerName()));
 
            view.updateWinnerDisplay(winner);
      }  
      }
+     for (int i = 0; i < PokerGame.NUM_PLAYERS; i++)
+     {
+         PlayerPane pp = view.getPlayerPane(i);
+         pp.getRoundsWon().setText(Integer.toString(model.getPlayer(i).getRoundsWon()));
     }
+}
+    
 }

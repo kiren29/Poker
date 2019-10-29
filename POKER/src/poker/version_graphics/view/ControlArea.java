@@ -13,13 +13,12 @@ public class ControlArea extends HBox{
     Button btnShuffle = new Button("Shuffle");
     Button btnDeal = new Button("Deal");
     Button btnPlayer = new Button("Add Player");
-    protected int rounds = 0;
-    Label round = new Label("Rounds:   " +rounds);
+    
 
     public ControlArea() {
         super(); // Always call super-constructor first !!
         
-        this.getChildren().addAll(lblDeck, spacer, round, btnShuffle, btnDeal, btnPlayer);
+        this.getChildren().addAll(lblDeck, spacer, btnShuffle, btnDeal, btnPlayer);
 
         HBox.setHgrow(spacer, Priority.ALWAYS); // Use region to absorb resizing
         this.setId("controlArea"); // Unique ID in the CSS

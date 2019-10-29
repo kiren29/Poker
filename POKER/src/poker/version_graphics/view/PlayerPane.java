@@ -15,8 +15,8 @@ public class PlayerPane extends VBox {
     private Region spacer2 = new Region();
     private HBox hboxCards = new HBox();
     private Label lblEvaluation = new Label("--");
-    private Label wins = new Label("Wins: " );
-    private Label winnerIs = new Label("Player X is the Winner!");
+    private Label RoundsWon = new Label("Wins: ");
+    private Label winnerIs = new Label("--");
     
     // Link to player object
     private Player player;
@@ -27,7 +27,7 @@ public class PlayerPane extends VBox {
         
         // Add child nodes
         HBox h1 = new HBox();
-        h1.getChildren().addAll(lblName, spacer1, wins);
+        h1.getChildren().addAll(lblName, spacer1, RoundsWon);
         HBox.setHgrow(spacer1, Priority.ALWAYS); 
         this.getChildren().addAll( h1,hboxCards, lblEvaluation);
         
@@ -50,17 +50,18 @@ public class PlayerPane extends VBox {
             CardLabel cl = (CardLabel) hboxCards.getChildren().get(i);
             cl.setCard(card);
             HandType evaluation = player.evaluateHand();
-            if (evaluation != null)
+            if (evaluation != null) {
                 lblEvaluation.setText(evaluation.toString());
-            else
+            	RoundsWon.setText("Wins: " + player.getRoundsWon());
+        	}else
                 lblEvaluation.setText("--");
         }
     }
-    
-    
-    public void addPlayer() {
-        // TODO Auto-generated method stub
-        
-    }}
-    
+
+    public Label getRoundsWon()
+    {
+        return RoundsWon;
+    }
+}
+
 

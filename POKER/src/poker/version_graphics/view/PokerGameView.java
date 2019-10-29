@@ -2,23 +2,32 @@ package poker.version_graphics.view;
 
 import java.util.ArrayList;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import poker.version_graphics.PokerGame;
 import poker.version_graphics.model.Player;
 import poker.version_graphics.model.PokerGameModel;
 
 public class PokerGameView {
-    private Label winnerIs;
-    private HBox players;
+    private int NUM_PLAYERS = 2;
+	private Label winnerIs;
+    private TilePane players;
     private ControlArea controls;
     
     private PokerGameModel model;
@@ -26,29 +35,29 @@ public class PokerGameView {
     public PokerGameView(Stage stage, PokerGameModel model) {
         this.model = model;
         
-        winnerIs = new Label("Player X is the Winner!");
+        winnerIs = new Label(" ");
         // Create all of the player panes we need, and put them into an HBox
-        players = new HBox();
-        for (int i = 0; i < 3; i++){
+        players = new TilePane();
+        for (int i = 0; i < NUM_PLAYERS; i++){
             PlayerPane pp = new PlayerPane();
             pp.setPlayer(model.getPlayer(i)); // link to player object in the logic
             players.getChildren().add(pp);
         }
-        
         // Create the control area
         controls = new ControlArea();
         controls.linkDeck(model.getDeck()); // link DeckLabel to DeckOfCards in the logic
         
         // Put players and controls into a BorderPane
         BorderPane root = new BorderPane();
-        root.setLeft(players);
+        root.setCenter(players);
         root.setBottom(controls);
         root.setTop(winnerIs);
         
         
+        
         // Disallow resizing - which is difficult to get right with images
-        stage.setResizable(false);
-
+        stage.setResizable(true);
+        
         // Create the scene using our layout; then display it
         Scene scene = new Scene(root);
         scene.getStylesheets().add(
@@ -57,7 +66,12 @@ public class PokerGameView {
         stage.setScene(scene);
         stage.show();        
     }
-    
+    public void addPlayerPane() {  // Method for "Add Player" Button
+    	PlayerPane pp = new PlayerPane();
+		pp.setPlayer(model.addPlayer());
+		players.getChildren().add(pp);
+	}
+
     public PlayerPane getPlayerPane(int i) {
         return (PlayerPane) players.getChildren().get(i);
     }
@@ -88,4 +102,5 @@ public class PokerGameView {
         }
 
         }
+	
 
