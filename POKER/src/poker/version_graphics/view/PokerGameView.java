@@ -89,18 +89,28 @@ public class PokerGameView {
     }
     public void updateWinnerDisplay(ArrayList<Player> winner) {
 
-        if (winner.isEmpty() == true)
+    	// angepasst Ro
 
-        winnerIs.setText("Tiebreak - Split pot");
+    	      if (winner.size() == 2)
 
-        else
+    	             winnerIs.setText("Tiebreak - Split pot between: \n"+winner.get(0).getPlayerName()+" & "+winner.get(1).getPlayerName());
 
-        for (Player myWinners : winner)
+    	      if (winner.size() == 3)
 
-        winnerIs.setText("The Winner is "+myWinners.getPlayerName());
+    	             winnerIs.setText("Tiebreak - Split pot between: \n"+winner.get(0).getPlayerName()+" & "+winner.get(1).getPlayerName()+" & "+winner.get(2).getPlayerName());
 
-        }
+    	      if (winner.size() == 4)
 
-        }
-	
+    	             winnerIs.setText("Tiebreak - Split pot between: \n"+winner.get(0).getPlayerName()+" & "+winner.get(1).getPlayerName()+" & "+winner.get(2).getPlayerName()+" & "+winner.get(3).getPlayerName());
 
+    	 
+
+    	        else
+
+    	        for (Player myWinners : winner)
+
+    	             if (winner.size() == 1)
+
+    	                   winnerIs.setText("Winner of this round: \n"+winner.get(0).getPlayerName());
+    }
+}
