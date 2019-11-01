@@ -6,6 +6,7 @@ import poker.version_graphics.PokerGame;
 
 public class PokerGameModel {
     private final ArrayList<Player> players = new ArrayList<>();
+    private final ArrayList<Player> winner = new ArrayList<>();
     private DeckOfCards deck;
     private int roundsWon;
     private int rounds;
@@ -39,7 +40,10 @@ public class PokerGameModel {
 	}
 	
 	
-	public int getRoundsWon(){
+	public int getRoundsWon(int i){
+		if (winner.contains(players.get(i))){
+			
+		}
 	    return roundsWon;
 	}
 	
@@ -49,10 +53,4 @@ public class PokerGameModel {
 	public int getRounds() {
 		return rounds++;
 	}
-		
-
-	}
-	
-	
-		
-	
+}
