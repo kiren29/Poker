@@ -27,6 +27,9 @@ public class PokerGameController {
     ArrayList<Player> clonedList = new ArrayList<Player>();
     Rank [] ranksP = new Rank [Player.HAND_SIZE];
     Rank [] ranksO = new Rank [Player.HAND_SIZE];
+    int counter = 0;
+    
+    
     public PokerGameController(PokerGameModel model, PokerGameView view) {
         this.model = model;
         this.view = view;
@@ -68,9 +71,7 @@ public class PokerGameController {
                 p.discardHand();
                 for (int j = 0; j < Player.HAND_SIZE; j++) {
                     Card card = deck.dealCard();
-
                     p.addCard(card);
-
                 }
                 p.evaluateHand();
                 PlayerPane pp = view.getPlayerPane(i);
@@ -81,9 +82,20 @@ public class PokerGameController {
 
             Alert alert = new Alert(AlertType.ERROR, "Not enough cards - shuffle first");
             alert.showAndWait();
-
         }
- 
+        evaluateWinner();
+        System.out.println(counter);
+        
+        for (Player myWinners : winner)
+        view.updateWinnerDisplay(winner);
+
+        for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
+        	PlayerPane pp = view.getPlayerPane(i);
+        	pp.getRoundsWon().setText(Integer.toString(model.getPlayer(i).getRoundsWon()));
+        }
+    }
+        
+        private ArrayList<Player> evaluateWinner() {
         winner.clear();
         winner.add(model.getPlayer(0));
         int counter = 0;
@@ -108,13 +120,19 @@ public class PokerGameController {
              if (p.compareTo(o) == 0) {
                    counter++;
                    winner.add(model.getPlayer(i));
-                   System.out.println("Counter: "+counter);
              }
              System.out.println(p.compareTo(o));
              System.out.println(winner.get(0).getPlayerName());
         }
-
-        if (counter > 0 && winner.get(0).evaluateHand() == HandType.OnePair ||winner.get(0).evaluateHand() == HandType.ThreeOfAKind ||winner.get(0).evaluateHand() == HandType.FourOfAKind || winner.get(0).evaluateHand() == HandType.Straight) {
+        
+        if (counter > 0) {
+        evaluateTiebreaks();
+        }
+        return winner;
+        }
+        
+        public ArrayList<Player> evaluateTiebreaks(){
+        if (winner.get(0).evaluateHand() == HandType.OnePair ||winner.get(0).evaluateHand() == HandType.ThreeOfAKind ||winner.get(0).evaluateHand() == HandType.FourOfAKind || winner.get(0).evaluateHand() == HandType.Straight) {
              clonedList = (ArrayList<Player>) winner.clone();
              winner.clear();
              winner.add(clonedList.get(0));
@@ -128,18 +146,15 @@ public class PokerGameController {
                       }
                       if (p1.evaluateValues().ordinal() > o1.evaluateValues().ordinal()) {
                              System.out.println(winner);
-                }
+                      }
                       if (p1.evaluateValues().ordinal() == o1.evaluateValues().ordinal()) {
                              winner.add(o1);
                              System.out.println(winner);
-           }
+                      }
+             }
         }
 
-        }
-
-//High Card, Flush and TwoPair - mehrere Values vergleichen
-
-        if (counter > 0 && winner.get(0).evaluateHand() == HandType.HighCard || winner.get(0).evaluateHand() == HandType.Flush) {
+        if (winner.get(0).evaluateHand() == HandType.HighCard || winner.get(0).evaluateHand() == HandType.Flush) {
              clonedList = (ArrayList<Player>) winner.clone();
              winner.clear();
              winner.add(clonedList.get(0));
@@ -163,15 +178,13 @@ public class PokerGameController {
                                 foundWinner = true;
                           }
                          }
-
                         if (!foundWinner) {
                                winner.add(o1);
                    }
-                   System.out.println(winner.get(0).getPlayerName());
              }   
         }
 
-        if (counter > 0 && winner.get(0).evaluateHand() == HandType.TwoPair || winner.get(0).evaluateHand() == HandType.FullHouse) {
+        if (winner.get(0).evaluateHand() == HandType.TwoPair || winner.get(0).evaluateHand() == HandType.FullHouse) {
                   clonedList = (ArrayList<Player>) winner.clone();
 
              winner.clear();
@@ -202,26 +215,9 @@ public class PokerGameController {
                          }
                         if (!foundWinner) {
                                winner.add(o1);
-                   }
-                   System.out.println(winner.get(0).getPlayerName());
-                     }
+                        }
+             	}
+         } 
+        return winner;
         }
-     if (winner.isEmpty() == true) {
-           System.out.println("tiebreak");
-           view.updateWinnerDisplay(null);
-     }
-     else{
-           for (Player myWinners : winner)
-           System.out.println("Winner is " + (myWinners.getPlayerName()));
-           view.updateWinnerDisplay(winner);
-        }
-
-     for (int i = 0; i < PokerGame.NUM_PLAYERS; i++)
-     {
-         PlayerPane pp = view.getPlayerPane(i);
-         pp.getRoundsWon().setText(Integer.toString(model.getPlayer(i).getRoundsWon()));
-    }
-}
-    
-
 }
