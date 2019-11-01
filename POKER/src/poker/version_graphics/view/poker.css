@@ -4,21 +4,34 @@
     -fx-max-width: 2000.0;
       -fx-alignment: center;
       -fx-text-fill: white;
-       -fx-background-color: green;
+      -fx-font-weight: bold;
+       -fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
 }
 
 #controlArea {
     -fx-spacing: 15.0px;
     -fx-padding: 5.0px;
     -fx-border-color: white;
-    -fx-background-color: green;
+    -fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
     -fx-border-width: 2.0px;
 }
 
 .player {
     -fx-padding: 5.0px;
     -fx-border-color: white;
-    -fx-background-color: green;
+ 	-fx-background-color: 
+        #081122,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
     -fx-border-width: 2.0px;
 }
 
@@ -35,7 +48,26 @@
     -fx-pref-height: 162;
     -fx-max-height: 800;
 }
-.Buttons{
-	fx-font-size: 18px;
+.button{
+	-fx-background-color: 
+        #081122,
+        linear-gradient(#081122 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 15px;
+    
 }
+#background{
+	-fx-background-color: 
+        #081122,
+        linear-gradient(#081122 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+}
+
+
+
 

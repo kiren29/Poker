@@ -1,13 +1,17 @@
 package poker.version_graphics.view;
 
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.util.ArrayList;
 
+import javafx.animation.RotateTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
@@ -18,8 +22,10 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import poker.version_graphics.PokerGame;
 import poker.version_graphics.model.Player;
 import poker.version_graphics.model.PokerGameModel;
@@ -38,10 +44,13 @@ public class PokerGameView {
         winnerIs = new Label(" ");
         // Create all of the player panes we need, and put them into an HBox
         players = new TilePane();
+        players.setPrefColumns(2);
+        players.prefHeightProperty().bind(players.heightProperty());
         for (int i = 0; i < NUM_PLAYERS; i++){
             PlayerPane pp = new PlayerPane();
             pp.setPlayer(model.getPlayer(i)); // link to player object in the logic
             players.getChildren().add(pp);
+            
         }
         // Create the control area
         controls = new ControlArea();
@@ -53,10 +62,14 @@ public class PokerGameView {
         root.setBottom(controls);
         root.setTop(winnerIs);
         
+        root.setId("background"); //in CSS
         
         
         // Disallow resizing - which is difficult to get right with images
         stage.setResizable(true);
+        
+       
+       
         
         // Create the scene using our layout; then display it
         Scene scene = new Scene(root);
@@ -111,6 +124,7 @@ public class PokerGameView {
 
     	             if (winner.size() == 1)
 
-    	                   winnerIs.setText("Winner of this round: \n"+winner.get(0).getPlayerName());
+    	                   winnerIs.setText("The "+winner.get(0).getPlayerName()+" is WINNER of this round!");
+    	      		
     }
 }

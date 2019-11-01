@@ -1,10 +1,13 @@
 package poker.version_graphics.view;
 
+import javafx.animation.RotateTransition;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 import poker.version_graphics.model.Card;
 import poker.version_graphics.model.HandType;
 import poker.version_graphics.model.Player;
@@ -55,6 +58,11 @@ public class PlayerPane extends VBox {
             	RoundsWon.setText("Wins: " + player.getRoundsWon());
         	}else
                 lblEvaluation.setText("--");
+            
+            RotateTransition rc = new RotateTransition(Duration.millis(600),cl); //Rotates Cards 
+            rc.setAxis(Rotate.X_AXIS);
+            rc.play();
+
         }
     }
 

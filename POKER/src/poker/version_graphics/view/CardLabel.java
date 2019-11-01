@@ -35,6 +35,7 @@ public class CardLabel extends Label {
         String rank = card.getRank().toString();
         String suit = card.getSuit().toString();
         return rank + "_of_" + suit + ".png";
+    
     }
 
 }
