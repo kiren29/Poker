@@ -25,9 +25,6 @@ public class Player implements Comparable<Player> {
         return cards;
     }
 
-    public void addPlayer() {
-  
-        }
 
     public void addCard(Card card) {
         if (cards.size() < HAND_SIZE) cards.add(card);

@@ -31,7 +31,6 @@ import poker.version_graphics.model.Player;
 import poker.version_graphics.model.PokerGameModel;
 
 public class PokerGameView {
-    private int NUM_PLAYERS = 2;
 	private Label winnerIs;
     private TilePane players;
     private ControlArea controls;
@@ -46,7 +45,7 @@ public class PokerGameView {
         players = new TilePane();
         players.setPrefColumns(2);
         players.prefHeightProperty().bind(players.heightProperty());
-        for (int i = 0; i < NUM_PLAYERS; i++){
+        for (int i = 0; i < PokerGame.NUM_PLAYERS; i++){
             PlayerPane pp = new PlayerPane();
             pp.setPlayer(model.getPlayer(i)); // link to player object in the logic
             players.getChildren().add(pp);
@@ -67,6 +66,7 @@ public class PokerGameView {
         
         // Disallow resizing - which is difficult to get right with images
         stage.setResizable(true);
+        stage.setHeight(700);
         
        
        
@@ -102,7 +102,6 @@ public class PokerGameView {
     }
     public void updateWinnerDisplay(ArrayList<Player> winner) {
 
-    	// angepasst Ro
 
     	      if (winner.size() == 2)
 

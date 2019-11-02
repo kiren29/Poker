@@ -59,7 +59,9 @@ public class PlayerPane extends VBox {
         	}else
                 lblEvaluation.setText("--");
             
-            RotateTransition rc = new RotateTransition(Duration.millis(600),cl); //Rotates Cards 
+            RotateTransition rc = new RotateTransition(Duration.millis(600),cl);//Rotates Cards 
+            rc.setFromAngle(180);
+            rc.setToAngle(360);
             rc.setAxis(Rotate.X_AXIS);
             rc.play();
 

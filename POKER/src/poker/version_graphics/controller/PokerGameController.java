@@ -40,7 +40,7 @@ public class PokerGameController {
     }
     
     private void addPlayer() { // SetOnAction Add Player Button ruft view auf
-    	if(PokerGame.NUM_PLAYERS<6) {
+    	if(PokerGame.NUM_PLAYERS<4) {
     		PokerGame.increaseNumPlayers();
     		view.addPlayerPane();
     		}       
