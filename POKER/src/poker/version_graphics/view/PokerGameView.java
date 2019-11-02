@@ -1,12 +1,16 @@
 package poker.version_graphics.view;
 
 import java.util.ArrayList;
+
+import javafx.animation.RotateTransition;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import poker.version_graphics.PokerGame;
 import poker.version_graphics.model.Player;
 import poker.version_graphics.model.PokerGameModel;
@@ -93,6 +97,11 @@ public class PokerGameView {
     	        else
     	        for (Player myWinners : winner)
     	             if (winner.size() == 1)
-    	                   winnerIs.setText("The "+winner.get(0).getPlayerName()+" is WINNER of this round!");	      		
+    	                   winnerIs.setText("The "+winner.get(0).getPlayerName()+" is WINNER of this round!");	
+    	      RotateTransition rc = new RotateTransition(Duration.millis(600),winnerIs);//Rotates Cards 
+              rc.setFromAngle(340);
+              rc.setToAngle(360);
+              rc.setAxis(Rotate.Y_AXIS);
+              rc.play();
     }
 }

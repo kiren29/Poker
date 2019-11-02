@@ -18,7 +18,7 @@ public class PlayerPane extends VBox {
     private Label winsRound = new Label();
     private HBox hboxCards = new HBox();
     private Label lblEvaluation = new Label("--");
-    private Label RoundsWon = new Label("Wins: ");
+    private Label RoundsWon = new Label("Wins: 0 \n" +"Loses: 0");
     
     // Link to player object
     private Player player;
@@ -31,7 +31,7 @@ public class PlayerPane extends VBox {
         HBox h1 = new HBox();
         h1.getChildren().addAll(lblName, spacer1, RoundsWon);
         HBox.setHgrow(spacer1, Priority.ALWAYS); 
-        this.getChildren().addAll(h1,hboxCards, lblEvaluation, winsRound);
+        this.getChildren().addAll(h1,winsRound,hboxCards, lblEvaluation);
         
         // Add CardLabels for the cards
         for (int i = 0; i < 5; i++) {
@@ -55,11 +55,12 @@ public class PlayerPane extends VBox {
             winsRound.setText(null);
             if (evaluation != null) {
                 lblEvaluation.setText(evaluation.toString());
-            	RoundsWon.setText("Wins: " + player.getRoundsWon()+"\n Loses: "+ player.getRoundsLost());
+            	RoundsWon.setText("Wins: " + player.getRoundsWon()+"\nLoses: "+ player.getRoundsLost());
             	if (player.getRoundWinner() == true) {
             	lblEvaluation.setText(evaluation.toString());
             	winsRound.setId("WinsRound");
-            	winsRound.setText("wins this round");
+            	winsRound.setText(" WINNER");
+            	winsRound.setId("Winner");
             	}
         	}else
                 lblEvaluation.setText("--");

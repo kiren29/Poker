@@ -1,6 +1,11 @@
+#Winner{
+	-fx-font-size: 15px;
+	-fx-text-fill: gold;
+}
+
 #WinnerIs{
-	-fx-font-size: 30px;
-	-fx-text-fill: white;
+	-fx-font-size: 20px;
+	-fx-text-fill: red;
 }
 
 #WinsRound{
