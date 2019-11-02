@@ -60,6 +60,7 @@ public class PokerGameView {
         root.setCenter(players);
         root.setBottom(controls);
         root.setTop(winnerIs);
+        winnerIs.setId("WinnerIs");
         
         root.setId("background"); //in CSS
         

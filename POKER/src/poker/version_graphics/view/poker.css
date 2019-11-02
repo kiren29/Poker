@@ -1,3 +1,8 @@
+#WinnerIs{
+	-fx-font-size: 30px;
+	-fx-text-fill: red;
+}
+
 .label {
     -fx-padding: 5.0px;
     -fx-min-width: 200.0;
