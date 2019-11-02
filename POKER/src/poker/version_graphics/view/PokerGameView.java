@@ -67,6 +67,7 @@ public class PokerGameView {
         // Disallow resizing - which is difficult to get right with images
         stage.setResizable(true);
         stage.setHeight(700);
+        stage.setWidth(1180);
         
        
        
