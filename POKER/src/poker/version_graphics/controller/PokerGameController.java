@@ -1,11 +1,8 @@
 package poker.version_graphics.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.HBox;
 import poker.version_graphics.PokerGame;
 import poker.version_graphics.model.Card;
 import poker.version_graphics.model.Card.Rank;
@@ -13,14 +10,12 @@ import poker.version_graphics.model.DeckOfCards;
 import poker.version_graphics.model.HandType;
 import poker.version_graphics.model.Player;
 import poker.version_graphics.model.PokerGameModel;
-import poker.version_graphics.view.CardLabel;
 import poker.version_graphics.view.PlayerPane;
 import poker.version_graphics.view.PokerGameView;
 
 public class PokerGameController {
     private PokerGameModel model;
     private PokerGameView view;
-    protected int rounds;
     
     ArrayList<Player> winner = new ArrayList<Player>();
 
@@ -84,14 +79,18 @@ public class PokerGameController {
             alert.showAndWait();
         }
         evaluateWinner();
-        System.out.println(counter);
         
         for (Player myWinners : winner)
         view.updateWinnerDisplay(winner);
-
+        
+              
         for (int i = 0; i < PokerGame.NUM_PLAYERS; i++) {
+        	Player p = model.getPlayer(i);
+        	p.setRoundsWon(winner);
+        	p.setRoundWinner(winner);
+        	
         	PlayerPane pp = view.getPlayerPane(i);
-        	pp.getRoundsWon().setText(Integer.toString(model.getPlayer(i).getRoundsWon()));
+        	pp.updatePlayerDisplay();
         }
     }
         
@@ -121,8 +120,6 @@ public class PokerGameController {
                    counter++;
                    winner.add(model.getPlayer(i));
              }
-             System.out.println(p.compareTo(o));
-             System.out.println(winner.get(0).getPlayerName());
         }
         
         if (counter > 0) {
@@ -142,14 +139,11 @@ public class PokerGameController {
                       if(p1.evaluateValues().ordinal() < o1.evaluateValues().ordinal()) {
                              winner.remove(p1);
                              winner.add(o1);
-                             System.out.println(winner);
                       }
                       if (p1.evaluateValues().ordinal() > o1.evaluateValues().ordinal()) {
-                             System.out.println(winner);
                       }
                       if (p1.evaluateValues().ordinal() == o1.evaluateValues().ordinal()) {
                              winner.add(o1);
-                             System.out.println(winner);
                       }
              }
         }

@@ -12,6 +12,9 @@ public class Player implements Comparable<Player> {
     private final ArrayList<Card> cards = new ArrayList<>();
     private HandType handType;
     public Rank [] ranks = new Rank [HAND_SIZE];
+    private int roundsWon;
+    private boolean winsRound;
+    private int roundsLost;
  
     public Player(String playerName) {
         this.playerName = playerName;
@@ -144,8 +147,30 @@ public class Player implements Comparable<Player> {
               return handType.compareTo(o.handType);
     }
 
-	public int getRoundsWon() {
-		// TODO Auto-generated method stub
-		return 0;
+    public int getRoundsWon() {	
+    	return roundsWon;
+    }
+    
+    public int getRoundsLost() {
+    	return roundsLost;
+    }
+    
+	public int setRoundsWon(ArrayList<Player> winner) {
+		if (winner.contains(this)) {
+			this.roundsWon++;
+		}
+		else {
+			this.roundsLost++;
+		}
+		return roundsWon;
+	}
+	public void setRoundWinner(ArrayList<Player> winner) {
+		winsRound = false;
+		if (winner.contains(this)) {
+		winsRound = true;
+		}
+	}
+	public boolean getRoundWinner() {
+		return winsRound;
 	}
 }

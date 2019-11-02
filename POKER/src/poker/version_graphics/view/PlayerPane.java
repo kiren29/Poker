@@ -15,11 +15,10 @@ import poker.version_graphics.model.Player;
 public class PlayerPane extends VBox {
     private Label lblName = new Label();
     private Region spacer1 = new Region();
-    private Region spacer2 = new Region();
+    private Label winsRound = new Label();
     private HBox hboxCards = new HBox();
     private Label lblEvaluation = new Label("--");
     private Label RoundsWon = new Label("Wins: ");
-    private Label winnerIs = new Label("--");
     
     // Link to player object
     private Player player;
@@ -32,7 +31,7 @@ public class PlayerPane extends VBox {
         HBox h1 = new HBox();
         h1.getChildren().addAll(lblName, spacer1, RoundsWon);
         HBox.setHgrow(spacer1, Priority.ALWAYS); 
-        this.getChildren().addAll( h1,hboxCards, lblEvaluation);
+        this.getChildren().addAll(h1,hboxCards, lblEvaluation, winsRound);
         
         // Add CardLabels for the cards
         for (int i = 0; i < 5; i++) {
@@ -53,9 +52,15 @@ public class PlayerPane extends VBox {
             CardLabel cl = (CardLabel) hboxCards.getChildren().get(i);
             cl.setCard(card);
             HandType evaluation = player.evaluateHand();
+            winsRound.setText(null);
             if (evaluation != null) {
                 lblEvaluation.setText(evaluation.toString());
-            	RoundsWon.setText("Wins: " + player.getRoundsWon());
+            	RoundsWon.setText("Wins: " + player.getRoundsWon()+"\n Loses: "+ player.getRoundsLost());
+            	if (player.getRoundWinner() == true) {
+            	lblEvaluation.setText(evaluation.toString());
+            	winsRound.setId("WinsRound");
+            	winsRound.setText("wins this round");
+            	}
         	}else
                 lblEvaluation.setText("--");
             
@@ -64,14 +69,6 @@ public class PlayerPane extends VBox {
             rc.setToAngle(360);
             rc.setAxis(Rotate.Y_AXIS);
             rc.play();
-
         }
     }
-
-    public Label getRoundsWon()
-    {
-        return RoundsWon;
-    }
 }
-
-
