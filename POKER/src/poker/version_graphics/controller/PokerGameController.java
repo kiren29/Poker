@@ -129,7 +129,7 @@ public class PokerGameController {
         }
         
         public ArrayList<Player> evaluateTiebreaks(){
-        if (winner.get(0).evaluateHand() == HandType.OnePair ||winner.get(0).evaluateHand() == HandType.ThreeOfAKind ||winner.get(0).evaluateHand() == HandType.FourOfAKind || winner.get(0).evaluateHand() == HandType.Straight) {
+        if (winner.get(0).evaluateHand() == HandType.ThreeOfAKind ||winner.get(0).evaluateHand() == HandType.FourOfAKind || winner.get(0).evaluateHand() == HandType.Straight) {
              clonedList = (ArrayList<Player>) winner.clone();
              winner.clear();
              winner.add(clonedList.get(0));
@@ -148,7 +148,7 @@ public class PokerGameController {
              }
         }
 
-        if (winner.get(0).evaluateHand() == HandType.HighCard || winner.get(0).evaluateHand() == HandType.Flush) {
+        if (winner.get(0).evaluateHand() == HandType.HighCard || winner.get(0).evaluateHand() == HandType.Flush || winner.get(0).evaluateHand() == HandType.OnePair) {
              clonedList = (ArrayList<Player>) winner.clone();
              winner.clear();
              winner.add(clonedList.get(0));

@@ -38,6 +38,7 @@ public class PlayerPane extends VBox {
             Label lblCard = new CardLabel();
             hboxCards.getChildren().add(lblCard);
         }
+        lblName.setId("lblName");
     }
     public void setPlayer(Player player) {
         this.player = player;

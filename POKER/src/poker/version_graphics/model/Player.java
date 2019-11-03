@@ -133,6 +133,37 @@ public class Player implements Comparable<Player> {
                   rank4 = clonedCards.get(1).getRank();
                   rank5 = clonedCards.get(0).getRank();           	            	  
               }
+              
+              if (handType == HandType.FullHouse) {
+            	  Card trioCard1 = null;
+            	  Card trioCard2 = null;
+            	  Card trioCard3 = null;
+                  ArrayList<Card> clonedCards = (ArrayList<Card>) cards.clone();
+
+                  boolean threeOfAKindFound = false;
+                  for (int i = 0; i < cards.size() - 2 && !threeOfAKindFound; i++) {
+                      for (int j = i + 1; j < cards.size() - 1 && !threeOfAKindFound; j++) {
+                          for (int l = j + 1; l < cards.size() && !threeOfAKindFound; l++) {
+                              if (cards.get(i).getRank() == cards.get(j).getRank() && cards.get(j).getRank() == cards.get(l).getRank()) {
+                                  threeOfAKindFound = true;
+
+            				  trioCard1 = clonedCards.get(j);
+            				  trioCard2 = clonedCards.get(i);
+            				  trioCard3 = clonedCards.get(l);
+                              clonedCards.remove(l);
+                              clonedCards.remove(j);
+                              clonedCards.remove(i); 
+            	              }
+            	           }
+            	  } 
+            	  
+                  rank1 = trioCard1.getRank();
+                  rank2 = trioCard2.getRank();
+                  rank3 = trioCard3.getRank();
+                  rank4 = clonedCards.get(1).getRank();
+                  rank5 = clonedCards.get(0).getRank();             	  
+                  }          	  
+              }
                Rank [] ranks = {rank1, rank2, rank3, rank4, rank5};
         return ranks;
         }
