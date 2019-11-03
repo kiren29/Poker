@@ -98,10 +98,6 @@ public class PokerGameView {
     	        for (Player myWinners : winner)
     	             if (winner.size() == 1)
     	                   winnerIs.setText("The "+winner.get(0).getPlayerName()+" is WINNER of this round!");	
-    	      RotateTransition rc = new RotateTransition(Duration.millis(600),winnerIs);//Rotates Cards 
-              rc.setFromAngle(340);
-              rc.setToAngle(360);
-              rc.setAxis(Rotate.Y_AXIS);
-              rc.play();
+    	      
     }
 }
